@@ -46,3 +46,12 @@ C# collections are broadly categorized into:
             BlockingCollection<T>	            Thread-safe producer-consumer collection
 
 4. Immutable Collections (System.Collections.Immutable)
+    Immutable collections cannot be modified after creation. Useful for functional programming.
+
+            Collection	                        Description
+            ImmutableList<T>	                Read-only list
+            ImmutableDictionary<TKey, TValue>	Read-only dictionary
+            ImmutableQueue<T>	                Read-only queue
+            ImmutableStack<T>	                Read-only stack
+            
+    📌 Requires NuGet package: System.Collections.Immutable
