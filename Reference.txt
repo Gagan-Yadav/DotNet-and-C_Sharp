@@ -18,22 +18,22 @@ C# collections are broadly categorized into:
             Collection	Description
             ArrayList	Dynamic array (like List<T> but stores object)
             Hashtable	Key-value pairs with fast lookup
-            Queue	    First-In-First-Out (FIFO) data structure
-            Stack	    Last-In-First-Out (LIFO) data structure
+            Queue	First-In-First-Out (FIFO) data structure
+            Stack	Last-In-First-Out (LIFO) data structure
             SortedList	Sorted collection of key-value pairs
 
 2. Generic Collections (System.Collections.Generic)
     Generic collections store specific data types, avoiding boxing/unboxing and improving performance.
 
             Collection	             Description
-            List<T>	                 Dynamic array (replaces ArrayList)
+            List<T>	             Dynamic array (replaces ArrayList)
             Dictionary<TKey, TValue> Key-value pairs (like Hashtable)
             Queue<T>	             FIFO queue
             Stack<T>	             LIFO stack
             SortedList<TKey, TValue> Sorted key-value pairs
-            LinkedList<T>	         Doubly linked list
+            LinkedList<T>	     Doubly linked list
             HashSet<T>	             Stores unique elements, unordered
-            SortedSet<T>	         Stores unique elements, sorted
+            SortedSet<T>	     Stores unique elements, sorted
 
 3. Concurrent Collections (System.Collections.Concurrent)
     These are thread-safe collections designed for multithreading.
@@ -43,7 +43,7 @@ C# collections are broadly categorized into:
             ConcurrentQueue<T>	                Thread-safe queue (FIFO)
             ConcurrentStack<T>	                Thread-safe stack (LIFO)
             ConcurrentDictionary<TKey, TValue>	Thread-safe key-value store
-            BlockingCollection<T>	            Thread-safe producer-consumer collection
+            BlockingCollection<T>	        Thread-safe producer-consumer collection
 
 4. Immutable Collections (System.Collections.Immutable)
     Immutable collections cannot be modified after creation. Useful for functional programming.
