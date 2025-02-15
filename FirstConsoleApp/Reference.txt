@@ -1,0 +1,8 @@
+C# is a powerful, object-oriented programming language developed by Microsoft, primarily used for building .NET applications, 
+web applications, game development, and enterprise solutions.
+
+using System; → Includes standard libraries.
+
+Main() → Entry point of the program.
+
+Console.WriteLine() → Outputs text to the console.
