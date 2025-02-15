@@ -2,7 +2,47 @@ C# is a powerful, object-oriented programming language developed by Microsoft, p
 web applications, game development, and enterprise solutions.
 
 using System; → Includes standard libraries.
+In C#, using System; is a directive that allows access to the System namespace, which contains fundamental types and classes
+essential for C# development. Without it, you'd have to use fully qualified names (e.g., System.Console.WriteLine instead of
+just Console.WriteLine). using System; provides access to fundamental functionalities in C#.
+It includes essential types like Console, Math, DateTime, Random, Exception, List<T>, File, and Threading.
+Without using System;, you’d need to fully qualify each class (System.Console.WriteLine() instead of Console.WriteLine()).
 
-Main() → Entry point of the program.
+Collections in C# are data structures that allow you to store, manage, and manipulate groups of objects. The System.Collections 
+and System.Collections.Generic namespaces provide various collection classes optimized for different use cases.
+C# collections are broadly categorized into:
 
-Console.WriteLine() → Outputs text to the console.
+1. Non-Generic Collections (System.Collections)
+    These collections store elements as object type, which means they can hold any type but require boxing and unboxing, making them less efficient.
+
+            Collection	Description
+            ArrayList	Dynamic array (like List<T> but stores object)
+            Hashtable	Key-value pairs with fast lookup
+            Queue	    First-In-First-Out (FIFO) data structure
+            Stack	    Last-In-First-Out (LIFO) data structure
+            SortedList	Sorted collection of key-value pairs
+
+2. Generic Collections (System.Collections.Generic)
+    Generic collections store specific data types, avoiding boxing/unboxing and improving performance.
+
+            Collection	             Description
+            List<T>	                 Dynamic array (replaces ArrayList)
+            Dictionary<TKey, TValue> Key-value pairs (like Hashtable)
+            Queue<T>	             FIFO queue
+            Stack<T>	             LIFO stack
+            SortedList<TKey, TValue> Sorted key-value pairs
+            LinkedList<T>	         Doubly linked list
+            HashSet<T>	             Stores unique elements, unordered
+            SortedSet<T>	         Stores unique elements, sorted
+
+3. Concurrent Collections (System.Collections.Concurrent)
+    These are thread-safe collections designed for multithreading.
+
+            Collection	                        Description
+            ConcurrentBag<T>	                Unordered collection allowing duplicates
+            ConcurrentQueue<T>	                Thread-safe queue (FIFO)
+            ConcurrentStack<T>	                Thread-safe stack (LIFO)
+            ConcurrentDictionary<TKey, TValue>	Thread-safe key-value store
+            BlockingCollection<T>	            Thread-safe producer-consumer collection
+
+4. Immutable Collections (System.Collections.Immutable)
