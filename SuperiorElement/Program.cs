@@ -35,6 +35,7 @@ class Program
             if (arr[i] > maxRight)
             {
                 superiorElements.Add(arr[i]);
+                // Console.WriteLine("element - "+arr[i]);
                 maxRight = arr[i];
             }
         }
