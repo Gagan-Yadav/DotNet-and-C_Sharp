@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstConsoleApp", "FirstCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrequencyOfCharacter", "FrequencyOfCharacter\FrequencyOfCharacter.csproj", "{2F93B865-EF31-45EF-A297-8CB4F7071BD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperiorElement", "SuperiorElement\SuperiorElement.csproj", "{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{2F93B865-EF31-45EF-A297-8CB4F7071BD6}.Release|x64.Build.0 = Release|Any CPU
 		{2F93B865-EF31-45EF-A297-8CB4F7071BD6}.Release|x86.ActiveCfg = Release|Any CPU
 		{2F93B865-EF31-45EF-A297-8CB4F7071BD6}.Release|x86.Build.0 = Release|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Debug|x64.Build.0 = Debug|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Debug|x86.Build.0 = Debug|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Release|x64.ActiveCfg = Release|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Release|x64.Build.0 = Release|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Release|x86.ActiveCfg = Release|Any CPU
+		{4ADCDDC3-ECD7-4D04-BAA4-E3167A43351B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
