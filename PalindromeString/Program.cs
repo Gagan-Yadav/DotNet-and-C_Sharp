@@ -1,35 +1,35 @@
-﻿using System.Text;
+﻿using System;
 
-class PalindromeString
+class Program
 {
-    public static void Main(String[] args)
+    static void Main()
     {
-        Console.Write("Enter String - ");
-        string? input = Console.ReadLine();
+        Console.Write("Enter a string: ");
+        string input = Console.ReadLine();
 
-        if (input.Length == 0)
+        if (IsPalindrome(input))
         {
-            Console.WriteLine("Please Enter Valid String!");
+            Console.WriteLine($"'{input}' is a palindrome.");
         }
         else
         {
-
-            char[] arr = input.ToCharArray();
-            StringBuilder reverse = new StringBuilder();
-            for (int i = arr.Length - 1; i >= 0; i--)
-            {
-                // Console.Write(arr[i]);
-                reverse = reverse.Append(Convert.ToString(arr[i]));
-            }
-            //  Console.WriteLine(reverse);
-            if (reverse.Equals(input))
-            {
-                Console.WriteLine(input+" is Palindrome String");
-            }
-            else
-            {
-                Console.WriteLine(input+" is not a Palindrome String");
-            }
+            Console.WriteLine($"'{input}' is not a palindrome.");
         }
+    }
+
+    static bool IsPalindrome(string str)
+    {
+        int left = 0, right = str.Length - 1;
+
+        while (left < right)
+        {
+            if (str[left] != str[right])
+                return false;
+
+            left++;
+            right--;
+        }
+
+        return true;
     }
 }
