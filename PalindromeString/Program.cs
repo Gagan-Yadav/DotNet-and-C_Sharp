@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Program
+class PalindromeString
 {
     static void Main()
     {
@@ -33,3 +33,10 @@ class Program
         return true;
     }
 }
+
+//           !!! Alternative Approach !!!
+// static bool IsPalindrome(string str)
+// {
+//     string reversed = new string(str.Reverse().ToArray());
+//     return str.Equals(reversed, StringComparison.OrdinalIgnoreCase);
+// }
