@@ -223,3 +223,96 @@ if you have multiple clauses then place order by clause at last otherwise it wil
 
 {MERGE, Transaction, function}
 
+---------------------C# Pointer-------------------
+type* identifier;
+char* str_name; // Memory reference
+int* user_id;
+
+Access Modifiers -> public, protected, private , internal
+
+In C#, the goto statement transfers control to some other part of the program
+using System; {use with goto => repeat, END, finish
+
+namespace CSharpGoto {
+
+  class Program {
+    public static void Main(string[] args) {
+      
+      // label
+      repeat: 
+        Console.WriteLine("Enter a number less than 10");
+        int num = Convert.ToInt32(Console.ReadLine());  
+
+        if(num >= 10) {
+          // transfers control to repeat
+          goto repeat;
+        }
+
+        Console.WriteLine(num + " is less than 10");
+        Console.ReadLine();
+    }
+  }
+}
+
+namespace is a package similar in java;
+Heap and Stack Memory -> String goes in heap, memory allocation is dynamic, it stored indirectly.
+	
+It is a special thread created by .NET runtime to monitor allocations of heap space.
+
+It only collects heap memory since objects are only created in heap
+
+Console.Read() reads one character at a time, which might not be handled well by the online compiler’s input buffer
+string variable is reference type it will store in  heap area 
+two types -  value type is int a = 190;
+		Reference type string s ="Gagan";
+
+Write all the string methods;\
+str.PadRight(20, '*'); this will fill the blank space with * if your string is not of length 20; in right side; similary left pad as well;
+
+string new_string = string.Join(" ",input);
+
+object[] array = {"Hello", "Gagan", 12345, 786}; 
+  
+        // Using Join method 
+        // Here separator is ', '( comma ) 
+        string s1 = string.Join(", ", array); 
+
+----------------------Arrays--------------
+
+Jagged Array ->  Array inside an array.
+Array.GetLength(); //  explore this 
+
+Multi Dimensional Array ->
+
+int[,] md = new int[,] {{10,20}, {1,2}, {3,5}};
+for(int r =0;i<md.GetLength(0);r++){
+for(int k =0;i<md.GetLength(1);k++){
+console.writeline(md[r][k]);
+}
+}
+
+{ *WE DONT GET QUESTION ON DIMENSIONAL ARRAY}
+
+jagged array example=>
+int [][] ja = new int[3][];
+ja[0] = new int[]{1,2,3,4};
+ja[1] = new int[]{1,2,3,4};
+ja[1] = new int[]{1,2,3,4};
+
+----------------------STRING--------------------------
+String is  immutable same as java.
+we have to use Escape Sequence character for printing (") or we can use (@) before the string for ex - 
+
+String test = " i am \" Gagan \" Y.";
+string new_Str  = test+"new data"; // update in string pool with old object reference.
+
+ If new keyword is used to create string then object is not only created in String Constant Pool but also in Heap Area.
+
+If we create strings like String S="WONDERFUL" , then SCP checks whether the string literal is already present in SCP or not.
+If it is not present the only 1 object is created inside String Constant Pool(SCP)
+
+If same literal object is present inside string constant pool (SCP)
+then instead of creating new object with the same literal, it points to the existing object.
+
+String Builder ->
+ StringBuilder text = new StringBuilder(50); // fixed size or capacity
