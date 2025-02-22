@@ -316,3 +316,28 @@ then instead of creating new object with the same literal, it points to the exis
 
 String Builder ->
  StringBuilder text = new StringBuilder(50); // fixed size or capacity
+---------------------------------------------------------------
+An object is a software bundle of related variable and Methods;
+A class is user defined datatype;
+
+STRUCT => user defined datatype; read only data, inherit not allowed;
+
+when to use struct ? // small functionality, limited and no inheritance
+
+	Access specifiers -> internal, public, private, protected, protected internal, private protected.
+
+STATIC => Static variables are inherited as long as they're are not hidden by another static variable with the same identifier.1
+
+-------------------------------------------------------------
+REGEX =>  in c# we have to make object of regex class and then pass out pattern in default constructor ;
+   Regex rg =  new Regex(pattern);
+
+and use system classes for matching regex like
+MatchCollection matches  = Regex(pattern);
+
+using System.Linq;
+TextInfo t = new CultureCollection.CurrentCulture.TextInfo;
+t.ToTitleCase();
+
+a method which has body and cam be overridden in child class is a virtual method;
+
