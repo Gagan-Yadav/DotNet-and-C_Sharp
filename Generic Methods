@@ -1,0 +1,14 @@
+Capacity	
+Gets the total numbers of elements the internal data structure can hold without resizing.
+
+Count	
+Gets the number of elements contained in the Stack<T>.
+
+Contains(T)	
+Determines whether an element is in the Stack<T>.
+GetHashCode()	
+Serves as the default hash function. Inherited from Object
+GetType()	
+Gets the Type of the current instance. Inherited from Object
+MemberwiseClone()	
+Creates a shallow copy of the current Object. Inherited from Object
