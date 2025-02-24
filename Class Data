@@ -340,4 +340,88 @@ TextInfo t = new CultureCollection.CurrentCulture.TextInfo;
 t.ToTitleCase();
 
 a method which has body and cam be overridden in child class is a virtual method;
+COUPLING ?
+Interface allows developers to create loosely coupled systems that are more flexible and extensible;
+
+ENTITY FRAMEWORK CORE, (orm)
+MCQ on sealed
+
+Collections
+generic = List<>,Dictionary<>,TValue
+Non generic ArrayList, Hashtable;
+
+using System.Collections.Immutable;
+
+// Create immutable set of strings
+ImmutableHashSet<string> colors = ImmutableHashSet.Create("Red", "Green", "Blue");
+
+// Create a new set by adding and removing items from the original set
+ImmutableHashSet<string> colorsModified = colors.Remove("Red").Add("Orange");
+
+foreach (string s in colorsModified)
+{
+    Console.WriteLine(s);
+}
+
+/* Example output:
+ Blue
+ Green
+ Orange
+ */
+
+Three main operations can be performed on a System.Collections.Generic.Stack<T> and its elements:
+
+Push => inserts an element at the top of the Stack<T>.
+
+Pop => removes an element from the top of the Stack<T>.
+
+Peek => returns an element that is at the top of the Stack<T> but does not remove it from the Stack<T>.
+
+Stack<T>(IEnumerable<T>)	
+Initializes a new instance of the Stack<T> class that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+
+try to override system methods!
+
+----------------------------------------------------------------------------
+GENERICS ->
+1st code is from list or dictionary;
+// Online C# Editor for free
+// Write, Edit and Run your C# code using C# Online Compiler
+
+using System;
+using System.Collections.Generic;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine ("Try programiz.pro");
+        List<int> lst = new List<int>();
+        lst.Add('A'); // it will hold the ascii value of A
+          Console.WriteLine (lst[0]);
+    }
+}
+
+Environment.Exit(0); => This method terminates the process and returns an exit code to the operating system.instead use return;
+0: Success - The application completed successfully.
+1: General error - A generic error occurred.
+2: Misuse of shell built-ins - Incorrect usage of shell built-in commands.
+3: Command not found - The command was not found.
+4: Command line usage error - Incorrect command line usage.
+5: Permission denied - The application does not have the necessary permissions.
+6: Out of memory - The application ran out of memory.
+7: Invalid argument - An invalid argument was passed to a command.
+8: Floating point exception - A floating point exception occurred.
+9: Kill signal - The application was terminated by a kill signal.
+10: User-defined exit code - You can define custom exit codes for specific conditions in your application.
+
+In C#, a Dictionary<TKey, TValue> can contain null values for its keys and values, depending on the types used for TKey and TValue. Here are some key points:
+
+Keys: A Dictionary cannot have null keys if the key type (TKey) is a value type (e.g., int, struct). However, if the key type is a reference type (e.g., string, object), it can have null keys.
+
+Values: A Dictionary can have null values if the value type (TValue) is a reference type. For value types, null is not allowed unless the value type is a nullable type (e.g., int?).
+
+--------------------------------------------------------------------
+			BUILT IN FUCNTIONS
+Array.Sort(arr); Array.Reverse(arr); 
 
