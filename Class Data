@@ -423,5 +423,68 @@ Values: A Dictionary can have null values if the value type (TValue) is a refere
 
 --------------------------------------------------------------------
 			BUILT IN FUCNTIONS
-Array.Sort(arr); Array.Reverse(arr); 
+Array.Sort(arr); Array.Reverse(arr); OrderByDescending();
+
+---------------------------------------------------------------------
+				EXCEPTIONS
+System Exeptions -> System.InvalidOperationException("");
+IOException => in file stream and file operations.
+FormatException =>
+ArgumentException
+ArgumentNullException
+ArgumentOutOfRangeException
+DivideByZeroException
+IndexOutOfRangeException
+NullReferenceException
+RankException
+StackOverflowException
+IOException
+EndOfStreamException
+FileNotFoundException
+FileLoadException
+
+ try{}Catch{}, Throw and Throws, Custom Exceptions using Exception class need to inherit exception class.
+
+public class MyEx : Exception{
+public MyEx() : base(){ }
+public TestException(string errormes) :base(errormes){ }
+
+}
+------------------------------------------------------------------
+			DELEGATES 
+Fucntion pointer; 
+1. Single cast 
+2 Multi cast
+in event handling, linq, event programming, callback
+ public delegate void myDel(int x);
+
+Anonymous method => method without name
+myDel obj = delegate(){
+console.writeline("hello""}
+};
+obj(); or obj.Invoke();
+
+anonymous method depends on the delegates signature;
+
+Built in delegates => 1. Action delegate , use when return type is void
+Action obj =show; // explore generic Action
+
+2. Func is generic delegate when your method have a return type
+		Func<int,int> obj = show;
+var res = obj(2)
+first int is return type of method then second int argument int
+
+3. Predicate => when function has Boolean return type;
+		Predicate<string> obj = show;
+it can be used with function which have only single parameter.
+---------------------------------------------------------------------
+		Lambda Expression
+save memory, less code
+() => {Console.WriteLine("Gagan");}
+
+Action obj = () => {Console.WriteLine("Gagan");}
+
+var v = (x) => {return x;}
+Func<int, int> obj = (n) => n*n;
+
 
