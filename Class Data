@@ -533,5 +533,25 @@ ThreadPool.QueueUserWorkItem(WaitCallback) //  pass callback function
 __________________________
 instead of Thread use Task
 --------------------------
+for asynchronous coding use task like threads
+// disp is function which displays hello for reference
+console.read() //  will pause main thread
+if we want to see task output then we have to pause main thread bcz it is a foreground thread and task is a background thread; background thread depends on foreground thread;
+
+Task t1 = new Task(disp);
+t1.Start();// running the thread
+t1.Wait();//pause main thread and wait for completion of t1
+
+Task t2 = Task.Run(disp); // directly start thread
+Task.Factory.StartNew(disp).Wait();
+
+________________________________________________
+async await // same like react , use with method 
+
+static async void disp(){
+Task.Delay(10000); // execute the statement and then delay for 10sec
+await Task.Delay(10000); // now it will wait for 10 sec and then execute next statement.
+Console.WriteLine("Gagan");
+}
 
 
