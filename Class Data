@@ -487,4 +487,51 @@ Action obj = () => {Console.WriteLine("Gagan");}
 var v = (x) => {return x;}
 Func<int, int> obj = (n) => n*n;
 
+---------------------------------------------------------------------
+				Multithreading
+
+Thread.currentThread.ManagedThreadId => id of ur thread
+Thread.currentThread.Name = name of your thread
+Thread.currentThread.IsBackground = wheather is a foreground or background process if background then true else false.
+Thread.IsALive()
+Thread.Abort() // Destroy Thread
+THread.Join() // tell other thread to wait for its task completion
+Thread.Join(new TimeSpan(10000)); // after this time join that thread
+
+Thread.Sleep(10000);// wait for 10 seconds
+Thread t1 = new Thread(Function_Name);
+t1.Start();
+
+delegate = bind method with thread (ThreadStart is a delegate)
+ThreadStart ts = new ThreadStart(Function_Name);
+Thread t1 = new Thread(ts);
+
+function return type void then we can directly use thread else we have to use another mechanism.
+if function have parameters then we have to us e=>
+ParameterizedThreadStart ts = new ParameterizedThread(disp); // this is outdated dont use this syntax
+
+SYNCHRONIZATION => use join method, second thread just after join method will wait for current thread, rest will be executed
+
+Thread lock(this){}//Pass the dummy object, it requires key, locking the current thread so that no other thread can interrupt the execution, it will lock resource, if we are using static function then we have to create dummy object( static object obj = new object(); ) and pass this object in place of (this) argument in lock;
+
+Interlocked => it is a class,provides automatic operation for shareable variable
+
+Monitor => for synchronization
+Monitor.Enter(obj)
+monitor.Pulse() // notify a thread in the waiting queue of a change in the object's state;
+monitor.PulseAll() // for all
+Syntax->
+Monitor.Enter(ob);
+Your code // like for loop for printing 1 to 10
+
+Moitor.Exit(ob);
+
+	MUTEX => block multiple process, or block 1 process from another 		 process in a multiple process then use mutex;
+THREAD POOL =>Reuse existing threads
+
+ThreadPool.QueueUserWorkItem(WaitCallback) //  pass callback function 
+__________________________
+instead of Thread use Task
+--------------------------
+
 
