@@ -1,0 +1,16 @@
+			ADO DOTNET
+
+ActiveXData Objects - ADO
+it is one of microsofts data access technologies.
+it allow us to connect to databases.  it has predefined classes and methods to retrieve and manipulate data
+it provides a bridge between the front end controls and back end database;
+
+1. Data provider similar java connection class, prepared statement
+we have dataReader class for connected model
+
+2. Dataset
+ for disconnected model
+using System.Data.SqlClient; using System.Data.MySqlClient;
+Connection class => 
+
+Command class =>
