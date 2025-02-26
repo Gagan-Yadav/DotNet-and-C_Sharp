@@ -14,3 +14,40 @@ using System.Data.SqlClient; using System.Data.MySqlClient;
 Connection class => 
 
 Command class =>
+steps => 1. 
+SqlConnection con = new SqlConnection();
+con.ConnectionString = "server=.;database=appdb1;trusted_connection=true";
+con.Open();
+con.Close(); // close at the end 
+
+2. SqlCommand cmd = new SqlCommand();
+cmd.Connection = con;
+cmd.CommandText = "select * from emp";
+SqlDataReader rd = cmd.ExecuteReader(); // return data in sqlDataReader
+
+3. rd.Read(); // cursor set to one record
+Console.WriteLine("name - "+rd.GetValue(0)); // or rd.GetInt32(1);
+Console.WriteLine("Ecode : "+rd.GetValue(1));
+Console.WriteLine("Salary: "+rd.GetValue(2));
+
+while(rd.Read()){
+// rd.Read();
+Console.WriteLine("name - "+rd.GetValue(0)); // or rd.GetInt32(1);
+Console.WriteLine("Ecode : "+rd.GetValue(1));
+Console.WriteLine("Salary: "+rd.GetValue(2));
+}
+
+cmd.CommandText = "Insert into emp values('gagan', 27, 999999)";
+cmd.ExecuteNonQuery(); // for insert query
+
+Dynamic values in insert =
+cmd.CommandText = "insert into emp values(@p1,@p2,@p3)";
+cmd.Parameteers.AddWithValue("@p1", name); 
+cmd.Parameteers.AddWithValue("@p2", code);
+cmd.Parameteers.AddWithValue("@p3", sal);// take user input for name code sal using console writeline
+
+if(rd.HasRows == false){
+return;}else{records print here}
+
+UserId=sa;password=root;server=;Database=db1;trusted_connection=false"
+
