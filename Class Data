@@ -554,4 +554,65 @@ await Task.Delay(10000); // now it will wait for 10 sec and then execute next st
 Console.WriteLine("Gagan");
 }
 
+ConfigureAwait(false)? // configures how the awaiter marshals the continuation after an await.
+----------------------------------------------------------------------------------------					TASK
+using System.Threading.Tasks;
+task can return a result . there is no direct mechanism to return result from a thread;
+static int get_Data(){
+Thread.Sleep();
+return 100;
+}
+static async void disp(){
+var res = await Task.Run(get_Data);
+Console.WriteLine(res);
+}
+we can use await keyword only with task;
+Task<int> res = Task.Factory.StartNew(GetData);
+
+---------------------------------------------------------------------------------				FILE I/O (MCQ)
+using System.IO;
+BufferedStream =? 
+
+FileStream = read nd write to any location in file
+SreamReader = reading char from a byte stream;
+StreamWriter = for writing 
+	StreamWriter w = File.CreateText(f)
+	w.WriteLine("gagan ");
+		w.Close();
+
+File.Create(path including file name);
+string data = File.ReadAllLine(filename);
+File.Exists(f) = return bool
+File.Delete(f);
+File.Copy(source,destination);
+
+FileStream fs = new FileStream(path, FileMode.Create);
+
+createNew =  will throw exception if file exists
+create =  will override data if file exists
+Open = if not exists then throw exception else open the file
+OpenOrCreate = if does not exist  then it will create a one file 
+
+
+StreamReader rd = new StreamReader(fs);
+string s = rd.ReadToEnd();
+console.Writleine(s);
+
+*FileAccess : Read , Write, ReadWrite;
+*FileShare: None,Read,Write,ReadWrite,Delete,Inheritable
+
+Truncate => file data will truncate if file exist , always size =0 when open
+FileMode.Append() =>append at the end of file
+
+---------------------------------------------------------------------------------
+				SERIALIZATION
+it is the process of converting an object into format that can be easily stored or transmitted.
+[Serializable]
+public class student{};
+we need binary formatter. for binary conversion
+
+XML formatter for cml;
+
+System.Text.Json; fro json format, similar for soap
+
 
