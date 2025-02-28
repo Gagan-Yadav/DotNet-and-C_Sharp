@@ -615,4 +615,23 @@ XML formatter for cml;
 
 System.Text.Json; fro json format, similar for soap
 
+---------------------------------------------------------------------------------					UML unified modeling language
+Representation
++ public
+- private
+# protected
+~ Package
+
+fat interface - interface with  multiple methods;
+
+SRP Principle = each class should have only one reason to change.// only 1 functionality in that class.
+
+OCP Principle = open for extension but closed for modification like extend features but not modifying existing ones,
+
+Liskov Substitution Principal = parent classes should be easily substituted with their child classes;
+
+Interface segregation principle = client should not be forced to depend upon interfaces that they do not use.
+
+Dependency Inversion principle = Rahnde bhai nahi ho payega!
+it uses interface, provide perfect interface that can be implemented by anyone without any dependency and should use abstraction.
 
