@@ -633,5 +633,7 @@ Liskov Substitution Principal = parent classes should be easily substituted with
 Interface segregation principle = client should not be forced to depend upon interfaces that they do not use.
 
 Dependency Inversion principle = Rahnde bhai nahi ho payega!
-it uses interface, provide perfect interface that can be implemented by anyone without any dependency and should use abstraction.
+it uses interface, provide perfect interface that can be implemented by anyone without any dependency and should use abstraction.(not exactly correct definition but kind of)
+
+
 
