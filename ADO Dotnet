@@ -51,3 +51,52 @@ return;}else{records print here}
 
 UserId=sa;password=root;server=;Database=db1;trusted_connection=false"
 
+		Connected Architecture 
+connection always remain open;
+
+Disconnected Arch. => connection should not always remain open
+Data Adapter class => acts as an interface between application between application and database. it provides data to the dataset. full time connection is not required.
+
+disconnected steps = 1. Connection
+			2. Command
+			  3. Data Adapter(Interface between database and dataset)
+			     4. DataSet (for multiple data)
+				5. DataTable(for one table)
+DataAdapter Method => Fill() => To load data from data source into dataset
+Update()=> To transfer data from a dataset to a data source.
+dataset => collections of data tables
+
+string cs ="";
+using(SqlConnection conn = new SqlConnnection(cs)){
+conn.Open();
+SqlCommand cmd = new SqlCommand("Select * from emp",conn);
+DataAdapter da = new DataAdapter();
+da.SelectCommand = cmd;
+DataSet bottle = new DataSet();
+da.Fill(bottle, "emp");
+// Conn.Close(); // we dpont need to use this here
+foreach(DataRow r in bottle.Tables["emp"].Rows){
+console.wl(r[0]); //  print names
+}
+
+---------------------------------------------------
+// You are using Java
+public static void ShowAll(){
+    using(SqlConnection conn  = new SqlConnection(cs))
+    {
+        conn.Open();
+        SqlCommand cmd =  new SqlCommand("Select * from emp",conn);
+        SqlDataAdapter da = new SqlDataAdapter();
+        da.SelectCommand =  cmd;
+        DataSet bottle = new DataSet();
+        da.Fill(bottle,"emp");
+        
+        Console.WriteLine($"Name \t ecode \t salary");
+        foreach(DataRow r in bottle.Tables["emp"].Rows){
+            Console.WriteLine($"{r[0]} \t {r[1]} \t {r[2]}");
+        }
+        
+        
+    }
+}
+
