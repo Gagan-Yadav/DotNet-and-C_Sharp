@@ -94,9 +94,66 @@ public static void ShowAll(){
         Console.WriteLine($"Name \t ecode \t salary");
         foreach(DataRow r in bottle.Tables["emp"].Rows){
             Console.WriteLine($"{r[0]} \t {r[1]} \t {r[2]}");
-        }
-        
-        
+        }  
     }
 }
+----------------------------------------------------------------------------------------------------------------------------
+Method Signature:
+
+public static void AddCustomer(Customer customer)
+This is a static method that takes a Customer object as a parameter.
+
+Using Statement:
+
+using(SqlConnection connect = new SqlConnection(connectionString))
+This creates a new SqlConnection object to connect to the database using the provided connection string. The using statement ensures that the connection is properly closed and disposed of after use.
+
+SqlDataAdapter:
+
+SqlDataAdapter adapter = new SqlDataAdapter("Select * from customers", connect);
+This creates a SqlDataAdapter to retrieve data from the "customers" table. The SqlDataAdapter uses the SQL query "Select * from customers" and the SqlConnection object.
+
+DataTable:
+
+DataTable dataTable = new DataTable();
+This creates a new DataTable object to hold the data retrieved by the SqlDataAdapter.
+
+SqlCommandBuilder:
+
+SqlCommandBuilder bd = new SqlCommandBuilder(adapter);
+This creates a SqlCommandBuilder object to automatically generate SQL commands for single-table updates. It uses the SqlDataAdapter to generate the necessary INSERT, UPDATE, and DELETE commands.
+
+Fill DataTable:
+
+adapter.Fill(dataTable);
+This fills the DataTable with data from the "customers" table.
+
+Create New DataRow:
+
+DataRow newR = dataTable.NewRow();
+newR["CustomerID"] = customer.CustomerID;
+newR["FirstName"] = customer.FirstName;
+newR["LastName"] = customer.LastName;
+newR["Email"] = customer.Email;
+newR["PhoneNumber"] = customer.PhoneNumber;
+This creates a new DataRow object and sets its columns with the values from the Customer object.
+
+Add DataRow to DataTable:
+
+dataTable.Rows.Add(newR);
+This adds the new DataRow to the DataTable.
+
+Update Database:
+
+adapter.Update(dataTable);
+This updates the database with the changes made to the DataTable, including the new row.
+
+Confirmation Message:
+
+Console.WriteLine("Customer added successfully");
+This prints a confirmation message to the console.
+
+Summary
+The AddCustomer method connects to the database, retrieves the existing data from the "customers" table into a DataTable,
+creates a new row with the customer details, adds it to the DataTable, and then updates the database with the new row.
 
