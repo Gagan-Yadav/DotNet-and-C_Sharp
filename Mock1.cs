@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 public class Information{
     public int InformationID {get;set;}
     public string FirstName{get;set;}
@@ -27,7 +29,7 @@ public class InformationManager{
     
     public void DisplayInformation(){
         if(Informations.Count>0){
-            Console.wWriteLine("No reord found");
+            Console.WriteLine("No reord found");
             return;
         }
         
@@ -45,13 +47,23 @@ public class Program{
         try{
             while(true){
                 Console.WriteLine("1. Add Information");
-                Console.WriteLine("2. Display Information")
+                Console.WriteLine("2. Display Information");
                 Console.WriteLine("3. Exit");
                 
                 int choice = int.Parse(Console.ReadLine());
                 switch(choice){
-                    case 1;
+                    case 1:
                     AddInformation();
+                    break;
+                    case 2:
+                    im.DisplayInformationDetails();
+                    break;
+                    case 3:
+                    return;
+                    break;
+                    default:
+                    Console.WriteLine("Invalid Option");
+                    break;
                 }
             }
         }catch(Exception e){
@@ -73,12 +85,12 @@ public class Program{
          string pn =  Console.ReadLine();
          
          Information info = new Information{
-             InformationID=id;
-             FirstName= fn;
-             Age = age;
-             Gender = g;
-             Email = em;
-             PhoneNumber= pn;
+             InformationID=id,
+             FirstName= fn,
+             Age = age,
+             Gender = g,
+             Email = em,
+             PhoneNumber= pn
          };
              
              im.AddInformation(info);
