@@ -60,7 +60,7 @@ public void SearchToy(int id){
         if (toys.ContainsKey(id))
         {
             Toy ti = new Toy(id, name, newtype, newcost);
-            toys[id] = ti;
+            toys[id] = ti; // values assign (id, name, type, cost);
             Console.WriteLine("Toy updated successfully.");
             return;
         }
