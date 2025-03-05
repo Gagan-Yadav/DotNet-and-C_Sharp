@@ -55,3 +55,18 @@ C# collections are broadly categorized into:
             ImmutableStack<T>	                Read-only stack
             
     📌 Requires NuGet package: System.Collections.Immutable
+
+
+  
+-- SELECT first_name, age
+-- FROM Customers where first_name like "%_o%";
+
+-- select * from Customers order by customer_id limit 2 ; // for top 2 record
+-- select * from Customers order by customer_id desc limit 2 ; // for bottom 2
+-- select * from Customers where last_name like "d%"; // starts with d
+-- select * from Customers where last_name like "%a"; // ends with a
+-- select * from Customers where age>30 ; //  show record where age 30
+-- select * from Customers where age between 20 And 30; // show record between 20 and 30;
+-- select count(country) from customers  where age >30; //  return the count of record having age >30 based on name column
+
+
