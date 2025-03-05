@@ -1,3 +1,26 @@
+Generic Collections
+List: Represents a strongly typed list of objects that can be accessed by index.
+Dictionary<TKey, TValue>: Represents a collection of key/value pairs.
+HashSet: Represents a set of values.
+Queue: Represents a first-in, first-out (FIFO) collection of objects.
+Stack: Represents a last-in, first-out (LIFO) collection of objects.
+LinkedList: Represents a doubly linked list.
+SortedList<TKey, TValue>: Represents a collection of key/value pairs that are sorted by the keys.
+SortedDictionary<TKey, TValue>: Represents a collection of key/value pairs that are sorted by the keys.
+SortedSet: Represents a collection of objects that is maintained in sorted order.
+ConcurrentDictionary<TKey, TValue>: Represents a thread-safe collection of key/value pairs.
+
+Non-Generic Collections
+ArrayList: Represents an ordered collection of objects.
+Hashtable: Represents a collection of key/value pairs that are organized based on the hash code of the key.
+Queue: Represents a first-in, first-out (FIFO) collection of objects.
+Stack: Represents a last-in, first-out (LIFO) collection of objects.
+SortedList: Represents a collection of key/value pairs that are sorted by the keys.
+BitArray: Manages a compact array of bit values, which are represented as Booleans.
+HybridDictionary: A collection that starts as a ListDictionary and switches to a Hashtable when the collection gets large.
+ListDictionary: Represents a collection of key/value pairs that are accessible by the key or index.
+
+
 Capacity	
 Gets the total numbers of elements the internal data structure can hold without resizing.
 
