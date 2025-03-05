@@ -21,7 +21,7 @@ public class Toy
 
 public class ToyManager
 {
-    public ArrayList toys = new ArrayList(); // Changed from Dictionary to ArrayList
+    public ArrayList toys = new ArrayList(); // Changed from Dictionary to ArrayList // similar for List<Toy>, HashSet<Toy>, LinkedList<Toy>
 
     public void Show()
     {
@@ -88,7 +88,7 @@ public class ToyManager
             }
         }
 
-        toys.Add(toy);
+        toys.Add(toy); // in case of linkedlist use AddLast(); otherwise same
         Console.WriteLine("Toy added successfully.");
     }
 
