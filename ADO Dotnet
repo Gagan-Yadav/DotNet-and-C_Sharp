@@ -157,3 +157,5 @@ Summary
 The AddCustomer method connects to the database, retrieves the existing data from the "customers" table into a DataTable,
 creates a new row with the customer details, adds it to the DataTable, and then updates the database with the new row.
 
+string pt = $"%{pattern}%";
+string query = "select * from vehicles where make like '{pt}'"; search by pattern
