@@ -36,10 +36,22 @@ public void Show(){
 public void SearchToy(int id){
     if(toys.ContainsKey(id)){
     Console.WriteLine("Record Found with ID :"+id);
-    Show();
+    foreach(Toy item in toys.Values){
+        if(item.ToyID == id)
+        Console.WriteLine($"ToyID: {item.ToyID}, Name: {item.Name}, Type: {item.Type}, Cost: {item.Cost}");
+    }
     }else{
     
     Console.WriteLine("No Record Available with Id: "+id);
+    }
+}
+
+public void DeleteToy(int id){
+    if(toys.ContainsKey(id)){
+        toys.Remove(id);
+         Console.WriteLine("Toy deleted successfully.");
+    }else{
+        Console.WriteLine("No Record Available with Id: "+id);
     }
 }
 
@@ -82,7 +94,8 @@ public class Program
             Console.WriteLine("2. Edit");
             Console.WriteLine("3. Show");
             Console.WriteLine("4. Search by Id");
-            Console.WriteLine("5. Exit");
+             Console.WriteLine("5. Delete by Id");
+            Console.WriteLine("6. Exit");
 
             Console.Write("Enter your choice: ");
             int ch = int.Parse(Console.ReadLine());
@@ -103,7 +116,12 @@ public class Program
                    int id = int.Parse(Console.ReadLine());
                     m.SearchToy(id);
                     break;
-                case 5:
+                    case 5:
+                    Console.Write("Enter id to Delete: ");
+                   int id1 = int.Parse(Console.ReadLine());
+                    m.DeleteToy(id1);
+                    break;
+                case 6:
                     Console.WriteLine("Exiting program...");
                     return;
                 default:
