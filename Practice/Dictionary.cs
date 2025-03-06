@@ -42,6 +42,36 @@ public class Manager{
             Console.WriteLine("Empty!");
         }
     }
+    public void ShowByID(int id){
+        if(books.Count>0){
+          
+                foreach(Book bt in books.Values){
+                    if(bt.bookId == id){
+                         bt.Display();
+                    }else{
+                         Console.WriteLine("Not Found!");
+                    }
+                }
+            
+        }else{
+            Console.WriteLine("Empty List!");
+        }
+    }
+     public void ShowByName(string name){
+        if(books.Count>0){
+          
+                foreach(Book bt in books.Values){
+                    if(bt.Name == name){
+                         bt.Display();
+                    }else{
+                         Console.WriteLine("Not Found!");
+                    }
+                }
+            
+        }else{
+            Console.WriteLine("Empty List!");
+        }
+    }
 }
 
 public class Program{
@@ -50,6 +80,8 @@ public class Program{
         while(true){
             Console.WriteLine("1. Add");
             Console.WriteLine("2. ShowAll");
+             Console.WriteLine("3. Show By ID");
+             Console.WriteLine("4. Show By Name");
             Console.WriteLine("11. Exit");
             
             Console.Write("Enter - ");
@@ -66,8 +98,20 @@ public class Program{
                 Book b = new Book(id, c, a);
                 m.Add(b);
                 break;
+                
                 case 2:
                 m.ShowAll();
+                break;
+                
+                case 3:
+                Console.Write("Enter ID: ");
+                int id1 = int.Parse(Console.ReadLine());
+                m.ShowByID(id1);
+                break;
+                case 4:
+                Console.Write("Enter Name: ");
+                string nm = Console.ReadLine();
+                m.ShowByName(nm);
                 break;
                 
                 case 11:
