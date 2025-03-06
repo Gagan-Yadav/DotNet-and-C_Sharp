@@ -576,7 +576,7 @@ using System.IO;
 BufferedStream =? 
 
 FileStream = read nd write to any location in file
-SreamReader = reading char from a byte stream;
+StreamReader = reading char from a byte stream;
 StreamWriter = for writing 
 	StreamWriter w = File.CreateText(f)
 	w.WriteLine("gagan ");
