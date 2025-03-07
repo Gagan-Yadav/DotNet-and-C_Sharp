@@ -666,3 +666,339 @@ constructor with seriazationinfo for serialiazation in Exception contructor
 camcellationToken.Token for cancel the task
 Task.Abort() // terminate task
 configuration.await method is used to avoid deadlock in asynchronous programming;
+
+The following constraints are commonly used in SQL:
+
+NOT NULL - Ensures that a column cannot have a NULL value
+UNIQUE - Ensures that all values in a column are different
+PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+FOREIGN KEY - Prevents actions that would destroy links between tables
+CHECK - Ensures that the values in a column satisfies a specific condition
+DEFAULT - Sets a default value for a column if no value is specified
+CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+ alter table emp add constraint pk_ecode primary key(ecode);
+   // pk_ecode is the name of our constraint
+ alter table emp alter column ename int;
+  // change the datatype of column
+
+Table Level Constarint - 
+create table dept( did int, dname varchar(20), constarint pk_did primary key (did));
+
+check constarint - check the value of cloumn basend on condition it will allow values
+create table dept( did int CHECK(did<=100), dname varchar(20), constarint pk_did primary key (did)); // it will not allow value greater than 100
+
+delete from employee; // delete all data from table
+
+like % = zero or any character
+like _ = single character ( at particular place as well)
+select * from employee where ename like '_a%';
+select * from employee where ename not like '%';
+
+FUNCTION - upper(column name) -> for uppercase
+lower(column name) -> for lowercase
+
+select ename,upper(ename) as 'up name' from employee;
+
+select * from employee where salary not between 2000 and 5000;
+
+begin transaction 
+delete from employee
+rollback
+//Roll back all the deleted data
+
+rollback -> undo changes(uncommited)
+commit to save changes permanent. commit can not be rolledback;
+begin transaction
+delete from employee
+commit
+
+DROP can not be rolled back, you can not truncate specific record.
+
+GROUP FUNCTION -> work on multi values but you will get single output
+
+we can not use aggregation with where like max min  with where clause
+
+selectcid,max(salary) from employee group by cid having max(Salary)>5000;
+
+TOP Command => select TOP 2 * from employee;
+
+INTO -> create new duplicate table with existing table;
+select * into employeedup from employee;
+select  eid,cid,salary into employeedup2 from employee;
+
+select into will create new table but insert into will not create new table;
+
+--------------------JOINS--------------------
+
+Inner join -> self, equi, non-equi
+Outer join -> left, right, full, cartisian join(cross join)
+
+-----------------SUB-QUERIES---------------------
+
+single row subquery = single line 
+multiple row subquery =
+we can use maximum 32 nested sub queries;
+
+------------DATE FUNCTION----------------------
+
+DATEADD()
+select getDate();
+select dateadd(day, 1 getDate());
+select dateadd(year, 1,getDate());
+select dateadd(month, 2,getDate());
+
+select datediff(year,'1977/10/12', getDate())
+
+select name as  "Male People", datediff(year,date_of_birth,"2023-06-01") as "Age" From PEOPLE where sex="male" order by name;
+
+-------------------Stored Procedures(SP)--------------
+
+1. user defined SP
+2. System defined SP
+
+create procedure ShowEMployee
+as
+begin
+print 'hello'
+end
+execute ShowEmployee or exec ShowEmployee
+Alter procedure ShowEMployee
+as
+begin
+declare @n1 int =20;
+print 'hello' + cast(@n1 as varchar)
+print @n1 * @n1 // square of the number
+end
+
+procedure name is not case sensitive;
+
+WITH Parameter ->
+
+Create procedure GetEmployeeById @eid int
+as
+begin
+select * from employee where eid=@eid;
+end
+
+execute GetEmployeeById 4
+
+OUTPUT Parameter ->
+output is for getting return value from procedures.
+
+create Procedure TOtalEMployee
+@tot int output, @m int output, @min int outpuit
+as
+begin
+select @tot=count(eid), @m=max(Salary), @min=min(salary) from employee;
+end
+declare @t int, @mn int, @mnn int
+exec totalEmployee @t output, @mn output, @mnn output
+select @t,@mn,@mnn
+
+----------------------Exception--------------------------
+
+create procedure normal
+as 
+begin
+declare @n int, @res int;
+begin try
+set @n=0;
+set @res=1200/@n;
+print @res
+end try
+begin catch
+print 'error in code'
+end catch
+print 'after catch'
+end
+
+exec normal
+
+sp_helptext normal //it will return database object we can view our stored procedure
+
+----------FUNCTIONS-------------------
+WE cant use Insert, Update, Delete in database table
+
+(A). Scalar functions - return single value as result
+
+ 2 types of function 1. System defined 2. User defined
+
+if we want to return multiple values then set return type as table for multiple return value
+
+(B). Table valued function => it will return table
+
+alter function func4()
+returns table
+as
+return select * from employee
+
+select * from dbo.func4() // to execute this function
+
+The following constraints are commonly used in SQL:
+
+NOT NULL - Ensures that a column cannot have a NULL value
+UNIQUE - Ensures that all values in a column are different
+PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+FOREIGN KEY - Prevents actions that would destroy links between tables
+CHECK - Ensures that the values in a column satisfies a specific condition
+DEFAULT - Sets a default value for a column if no value is specified
+CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+ alter table emp add constraint pk_ecode primary key(ecode);
+   // pk_ecode is the name of our constraint
+ alter table emp alter column ename int;
+  // change the datatype of column
+
+Table Level Constarint - 
+create table dept( did int, dname varchar(20), constarint pk_did primary key (did));
+
+check constarint - check the value of cloumn basend on condition it will allow values
+create table dept( did int CHECK(did<=100), dname varchar(20), constarint pk_did primary key (did)); // it will not allow value greater than 100
+
+delete from employee; // delete all data from table
+
+like % = zero or any character
+like _ = single character ( at particular place as well)
+select * from employee where ename like '_a%';
+select * from employee where ename not like '%';
+
+FUNCTION - upper(column name) -> for uppercase
+lower(column name) -> for lowercase
+
+select ename,upper(ename) as 'up name' from employee;
+
+select * from employee where salary not between 2000 and 5000;
+
+begin transaction 
+delete from employee
+rollback
+//Roll back all the deleted data
+
+rollback -> undo changes(uncommited)
+commit to save changes permanent. commit can not be rolledback;
+begin transaction
+delete from employee
+commit
+
+DROP can not be rolled back, you can not truncate specific record.
+
+GROUP FUNCTION -> work on multi values but you will get single output
+
+we can not use aggregation with where like max min  with where clause
+
+selectcid,max(salary) from employee group by cid having max(Salary)>5000;
+
+TOP Command => select TOP 2 * from employee;
+
+INTO -> create new duplicate table with existing table;
+select * into employeedup from employee;
+select  eid,cid,salary into employeedup2 from employee;
+
+select into will create new table but insert into will not create new table;
+
+--------------------JOINS--------------------
+
+Inner join -> self, equi, non-equi
+Outer join -> left, right, full, cartisian join(cross join)
+
+-----------------SUB-QUERIES---------------------
+
+single row subquery = single line 
+multiple row subquery =
+we can use maximum 32 nested sub queries;
+
+------------DATE FUNCTION----------------------
+
+DATEADD()
+select getDate();
+select dateadd(day, 1 getDate());
+select dateadd(year, 1,getDate());
+select dateadd(month, 2,getDate());
+
+select datediff(year,'1977/10/12', getDate())
+
+select name as  "Male People", datediff(year,date_of_birth,"2023-06-01") as "Age" From PEOPLE where sex="male" order by name;
+
+-------------------Stored Procedures(SP)--------------
+
+1. user defined SP
+2. System defined SP
+
+create procedure ShowEMployee
+as
+begin
+print 'hello'
+end
+execute ShowEmployee or exec ShowEmployee
+Alter procedure ShowEMployee
+as
+begin
+declare @n1 int =20;
+print 'hello' + cast(@n1 as varchar)
+print @n1 * @n1 // square of the number
+end
+
+procedure name is not case sensitive;
+
+WITH Parameter ->
+
+Create procedure GetEmployeeById @eid int
+as
+begin
+select * from employee where eid=@eid;
+end
+
+execute GetEmployeeById 4
+
+OUTPUT Parameter ->
+output is for getting return value from procedures.
+
+create Procedure TOtalEMployee
+@tot int output, @m int output, @min int outpuit
+as
+begin
+select @tot=count(eid), @m=max(Salary), @min=min(salary) from employee;
+end
+declare @t int, @mn int, @mnn int
+exec totalEmployee @t output, @mn output, @mnn output
+select @t,@mn,@mnn
+
+----------------------Exception--------------------------
+
+create procedure normal
+as 
+begin
+declare @n int, @res int;
+begin try
+set @n=0;
+set @res=1200/@n;
+print @res
+end try
+begin catch
+print 'error in code'
+end catch
+print 'after catch'
+end
+
+exec normal
+
+sp_helptext normal //it will return database object we can view our stored procedure
+
+----------FUNCTIONS-------------------
+WE cant use Insert, Update, Delete in database table
+
+(A). Scalar functions - return single value as result
+
+ 2 types of function 1. System defined 2. User defined
+
+if we want to return multiple values then set return type as table for multiple return value
+
+(B). Table valued function => it will return table
+
+alter function func4()
+returns table
+as
+return select * from employee
+
+select * from dbo.func4() // to execute this function
