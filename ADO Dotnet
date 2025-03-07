@@ -159,3 +159,13 @@ creates a new row with the customer details, adds it to the DataTable, and then 
 
 string pt = $"%{pattern}%";
 string query = "select * from vehicles where make like '{pt}'"; search by pattern
+*** use ExecuteScalar to get First Column value , it return string type all the values;
+disconnected steps = 1. Connection
+			2. Command
+			  3. Data Adapter(Interface between database and dataset)
+			     4. DataSet (for multiple data)
+				5. DataTable(for one table)
+DataAdapter Method => Fill() => To load data from data source into dataset
+Update()=> To transfer data from a dataset to a data source.
+dataset => collections of data tables
+
