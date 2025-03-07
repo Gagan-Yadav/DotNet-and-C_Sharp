@@ -657,5 +657,12 @@ Steps=>
 the goal of domain driven design is to create better software by focusing on a model of the domain rather than the technology.
 
 DDD is all about understanding the customer real business need.
-
-
+[TestFixture] = to define test class
+[setup] = initialize variable
+[Test] = for method test
+*lookup collection allows null key entry
+task cancel exception when task is cancel
+constructor with seriazationinfo for serialiazation in Exception contructor
+camcellationToken.Token for cancel the task
+Task.Abort() // terminate task
+configuration.await method is used to avoid deadlock in asynchronous programming;
