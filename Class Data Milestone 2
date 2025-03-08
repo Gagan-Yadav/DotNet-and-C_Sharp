@@ -1,0 +1,22 @@
+use HTML helper using @ and attribute using [] , attribute is similar like annotation
+
+Controllers=> action method treated as URL or routing we can access method on browser using method name in url like localhost:8080/controllername/methodname 
+it will execute that method code on browser.
+mother of all result type is ActionResult; // if method type is this we can return any datatype.
+to redirect between Pages return that function.
+just write [HttpGet] before method this will make that function as post method,
+[HttpPost].
+@* comment *@
+
+asp_action="path of view" // for navigating, use this in html code
+extension for view .cshtml
+
+viewdata = transfer data to controller.// ViewBag also same only syntax different
+similar TempData
+ViewData["a"] = variable; // to store value of variable and show it on browser
+to access this in html we have to use @ symbol before this
+ => <h1>@ViewData["a"]</h1>
+=> <input type="text" value="@ViewBag.a" />
+=><h1> Value of a = @TempData["a"]  </h1>
+Ragor code = writing c sharp inside html ;
+
