@@ -3,6 +3,8 @@ using System.Data.SqlClient;
 using System.Data;
 using dotnetapp.Models;
 // using Internal;
+// using Internal;
+// using Internal;
 
 // using Internal;
 // using Internal;
@@ -165,175 +167,198 @@ namespace dotnetapp.Managers
 
         public void AddAttendeeToDB(int eventid)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                // Console.Write("Connection successful!");\
-                // Console.Write("Enter Event ID for the Attendee: ");
-                // int eid = int.Parse(Console.ReadLine());
-                Console.Write("Enter Attendee Name: ");
-                string nm = Console.ReadLine();
-                Console.Write("Enter Age: ");
-                int ag = int.Parse(Console.ReadLine());
-                Console.Write("Enter Email: ");
-                string em = Console.ReadLine();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
 
-                SqlCommand cmd = new SqlCommand("Select * from Attendees", connection);
-                // cmd.Parameters.AddWithValue("@aid", );
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-                DataSet set = new DataSet();
-                //   DataSet set = new DataSet();
-                adapter.Fill(set, "Attendees");
-                // if (set.Tables[0].Rows.Count <= 0)
-                //{
-                DataRow row = set.Tables[0].NewRow();
-                row[1] = nm;
-                row[2] = ag;
-                row[3] = em;
-                row[4] = eventid;
+                    Console.Write("Enter Attendee Name: ");
+                    string nm = Console.ReadLine();
+                    Console.Write("Enter Age: ");
+                    int ag = int.Parse(Console.ReadLine());
+                    Console.Write("Enter Email: ");
+                    string em = Console.ReadLine();
 
-                set.Tables[0].Rows.Add(row);
-                adapter.Update(set, "Attendees");
-                Console.WriteLine("Attendee added to the database successfully!");
-                //}
-                //else
-                //{
-                /// Console.WriteLine("ID Already Exists");
-                // }
+                    SqlCommand cmd = new SqlCommand("Select * from Attendees", connection);
+                    // cmd.Parameters.AddWithValue("@aid", );
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    DataSet set = new DataSet();
+
+                    adapter.Fill(set, "Attendees");
+
+                    // SqlCommand cmd = new SqlCommand("Select * from Events where EventId = @eid", connection);
+                    // cmd.Parameters.AddWithValue("@eid", eventid);
+
+                    DataRow row = set.Tables[0].NewRow();
+                    row[1] = nm;
+                    row[2] = ag;
+                    row[3] = em;
+                    row[4] = eventid;
+
+                    set.Tables[0].Rows.Add(row);
+                    adapter.Update(set, "Attendees");
+                    Console.WriteLine("Attendee added to the database successfully!");
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"No Event Found With ID: '{eventid}'. {e.Message}");
             }
 
         }
 
         public void EditAttendeeInDB()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-
-                Console.Write("Enter Attendee ID to edit: ");
-                int id = int.Parse(Console.ReadLine());
-
-                SqlCommand cmd = new SqlCommand("Select * from Attendees where AttendeeId = @id", connection);
-                cmd.Parameters.AddWithValue("@id", id);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-                DataSet set = new DataSet();
-                adapter.Fill(set, "Attendees");
-
-                if (set.Tables[0].Rows.Count > 0)
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    Console.WriteLine($"Editing Attendee with ID: {id}");
 
-                    Console.Write("Enter new Attendees Name (leave empty to keep current): ");
-                    string nm = Console.ReadLine();
-                    if (!string.IsNullOrEmpty(nm))
+                    Console.Write("Enter Attendee ID to edit: ");
+                    int id = int.Parse(Console.ReadLine());
+
+                    SqlCommand cmd = new SqlCommand("Select * from Attendees where AttendeeId = @id", connection);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    DataSet set = new DataSet();
+                    adapter.Fill(set, "Attendees");
+
+                    if (set.Tables[0].Rows.Count > 0)
                     {
-                        foreach (Attendee item in attendees)
+                        Console.WriteLine($"Editing Attendee with ID: {id}");
+
+                        Console.Write("Enter new Attendees Name (leave empty to keep current): ");
+                        string nm = Console.ReadLine();
+                        if (!string.IsNullOrEmpty(nm))
                         {
-                            if (item.AttendeeId == id)
+                            foreach (Attendee item in attendees)
                             {
-                                item.Name = nm;
+                                if (item.AttendeeId == id)
+                                {
+                                    item.Name = nm;
+                                }
                             }
                         }
-                    }
 
-                    Console.Write("Enter new Attendees Age (leave empty to keep current): ");
+                        Console.Write("Enter new Attendees Age (leave empty to keep current): ");
 
-                    if (!int.TryParse(Console.ReadLine(), out int age))
-                    {
-                        foreach (Attendee item in attendees)
+                        if (!int.TryParse(Console.ReadLine(), out int age))
                         {
-                            if (item.AttendeeId == id)
+                            foreach (Attendee item in attendees)
                             {
-                                item.Age = age;
+                                if (item.AttendeeId == id)
+                                {
+                                    item.Age = age;
+                                }
                             }
                         }
-                    }
 
-                    Console.Write("Enter new Attendees Email (leave empty to keep current): ");
-                    string em = Console.ReadLine();
-                    if (!string.IsNullOrEmpty(em))
-                    {
-                        foreach (Attendee item in attendees)
+                        Console.Write("Enter new Attendees Email (leave empty to keep current): ");
+                        string em = Console.ReadLine();
+                        if (!string.IsNullOrEmpty(em))
                         {
-                            if (item.AttendeeId == id)
+                            foreach (Attendee item in attendees)
                             {
-                                item.Email = em;
+                                if (item.AttendeeId == id)
+                                {
+                                    item.Email = em;
 
+                                }
                             }
                         }
+
+                        DataRow row = set.Tables[0].Rows[0];
+                        row[1] = nm;
+                        row[2] = age;
+                        row[3] = em;
+
+                        adapter.Update(set, "Attendees");
+                        Console.WriteLine("Attendee information updated successfully!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Record Not Found with ID {id}");
                     }
 
-                    DataRow row = set.Tables[0].Rows[0];
-                    row[1] = nm;
-                    row[2] = age;
-                    row[3] = em;
-
-                    adapter.Update(set, "Attendees");
-                    Console.WriteLine("Attendee information updated successfully!");
                 }
-                else
-                {
-                    Console.WriteLine($"Record Not Found with ID {id}");
-                }
-
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
 
         public void DeleteAttendeeFromDB()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                Console.Write("Enter Attendee ID to delete: ");
-                int eid = int.Parse(Console.ReadLine());
-
-
-                SqlCommand cmd = new SqlCommand("Select * from Attendees where AttendeeId = @aid", connection);
-                cmd.Parameters.AddWithValue("@aid", eid);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-                DataSet set = new DataSet();
-
-                adapter.Fill(set, "Attendees");
-                if (set.Tables[0].Rows.Count > 0)
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    DataRow row = set.Tables[0].Rows[0];
-                    row.Delete();
-                    adapter.Update(set, "Attendees");
-                    Console.WriteLine("Attendee Deleted successfully!");
+                    Console.Write("Enter Attendee ID to delete: ");
+                    int eid = int.Parse(Console.ReadLine());
+
+
+                    SqlCommand cmd = new SqlCommand("Select * from Attendees where AttendeeId = @aid", connection);
+                    cmd.Parameters.AddWithValue("@aid", eid);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    DataSet set = new DataSet();
+
+                    adapter.Fill(set, "Attendees");
+                    if (set.Tables[0].Rows.Count > 0)
+                    {
+                        DataRow row = set.Tables[0].Rows[0];
+                        row.Delete();
+                        adapter.Update(set, "Attendees");
+                        Console.WriteLine("Attendee Deleted successfully!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Attendee Found.");
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("No Attendee Found.");
-                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
         public void ListAttendeesFromDB()
         {
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-
-
-
-                SqlCommand cmd = new SqlCommand("Select a.AttendeeId, a.Name, a.Age, a.Email, e.Name from Attendees a INNER JOIN Events e on a.EventId=e.EventId", connection);
-                // cmd.Parameters.AddWithValue("@aid",eid);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-                DataSet set = new DataSet();
-
-                adapter.Fill(set, "Attendees");
-                if (set.Tables[0].Rows.Count > 0)
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    foreach (DataRow row in set.Tables[0].Rows)
-                    {
 
-                        Console.WriteLine($"Attendee ID: {row[0]}\nName: {row[1]}\nAge: {row[2]}\nEmail:  {row[3]}\nEvent Name:{row[4]}");
+
+
+                    SqlCommand cmd = new SqlCommand("Select a.AttendeeId, a.Name, a.Age, a.Email, e.Name from Attendees a INNER JOIN Events e on a.EventId=e.EventId", connection);
+                    // cmd.Parameters.AddWithValue("@aid",eid);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    DataSet set = new DataSet();
+
+                    adapter.Fill(set, "Attendees");
+                    if (set.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow row in set.Tables[0].Rows)
+                        {
+
+                            Console.WriteLine($"Attendee ID: {row[0]}\nName: {row[1]}\nAge: {row[2]}\nEmail:  {row[3]}\nEvent Name:{row[4]}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Attendee Found.");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("No Attendee Found.");
-                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -343,26 +368,32 @@ namespace dotnetapp.Managers
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
-
-
-                SqlCommand cmd = new SqlCommand("Select a.AttendeeId, a.Name, a.Age, a.Email, e.Name from Attendees a INNER JOIN Events e on a.EventId=e.EventId where e.EventId = @id", connection);
-                cmd.Parameters.AddWithValue("@id",id);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-                DataSet set = new DataSet();
-
-                adapter.Fill(set, "Attendees");
-                if (set.Tables[0].Rows.Count > 0)
+                try
                 {
-                    foreach (DataRow row in set.Tables[0].Rows)
-                    {
 
-                        Console.WriteLine($"Attendee ID: {row[0]} Name: {row[1]} Age: {row[2]} Email:  {row[3]} Event Name:{row[4]}");
+                    SqlCommand cmd = new SqlCommand("Select a.AttendeeId, a.Name, a.Age, a.Email, e.Name from Attendees a INNER JOIN Events e on a.EventId=e.EventId where e.EventId = @id", connection);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    DataSet set = new DataSet();
+
+                    adapter.Fill(set, "Attendees");
+                    if (set.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow row in set.Tables[0].Rows)
+                        {
+
+                            Console.WriteLine($"Attendee ID: {row[0]} Name: {row[1]} Age: {row[2]} Email:  {row[3]} Event Name:{row[4]}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Attendee Found.");
                     }
                 }
-                else
+                catch (Exception e)
                 {
-                    Console.WriteLine("No Attendee Found.");
+                    Console.WriteLine(e.Message);
                 }
             }
         }
