@@ -63,6 +63,7 @@ namespace dotnetapp.Managers
                 }
             }
 
+
             Console.Write("Enter new Attendee Email (leave empty to keep current): ");
             string em = Console.ReadLine();
             if (!string.IsNullOrEmpty(em))
@@ -176,7 +177,7 @@ namespace dotnetapp.Managers
                 Console.Write("Enter Email: ");
                 string em = Console.ReadLine();
 
-                SqlCommand cmd = new SqlCommand("Select * from Attendee", connection);
+                SqlCommand cmd = new SqlCommand("Select * from Attendees", connection);
                 // cmd.Parameters.AddWithValue("@aid", );
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
@@ -211,7 +212,7 @@ namespace dotnetapp.Managers
                 Console.Write("Enter Attendee ID to edit: ");
                 int id = int.Parse(Console.ReadLine());
 
-                SqlCommand cmd = new SqlCommand("Select * from Attendee where AttendeeId = @id", connection);
+                SqlCommand cmd = new SqlCommand("Select * from Attendees where AttendeeId = @id", connection);
                 cmd.Parameters.AddWithValue("@id", id);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
@@ -222,7 +223,7 @@ namespace dotnetapp.Managers
                 {
                     Console.WriteLine($"Editing Attendee with ID: {id}");
 
-                    Console.Write("Enter new Attendee Name (leave empty to keep current): ");
+                    Console.Write("Enter new Attendees Name (leave empty to keep current): ");
                     string nm = Console.ReadLine();
                     if (!string.IsNullOrEmpty(nm))
                     {
@@ -235,7 +236,7 @@ namespace dotnetapp.Managers
                         }
                     }
 
-                    Console.Write("Enter new Attendee Age (leave empty to keep current): ");
+                    Console.Write("Enter new Attendees Age (leave empty to keep current): ");
 
                     if (!int.TryParse(Console.ReadLine(), out int age))
                     {
@@ -248,7 +249,7 @@ namespace dotnetapp.Managers
                         }
                     }
 
-                    Console.Write("Enter new Attendee Email (leave empty to keep current): ");
+                    Console.Write("Enter new Attendees Email (leave empty to keep current): ");
                     string em = Console.ReadLine();
                     if (!string.IsNullOrEmpty(em))
                     {
@@ -286,7 +287,7 @@ namespace dotnetapp.Managers
                 int eid = int.Parse(Console.ReadLine());
 
 
-                SqlCommand cmd = new SqlCommand("Select * from Attendee where AttendeeId = @aid", connection);
+                SqlCommand cmd = new SqlCommand("Select * from Attendees where AttendeeId = @aid", connection);
                 cmd.Parameters.AddWithValue("@aid", eid);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
@@ -308,9 +309,13 @@ namespace dotnetapp.Managers
         }
         public void ListAttendeesFromDB()
         {
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("Select * from Attendee", connection);
+
+
+
+                SqlCommand cmd = new SqlCommand("Select a.AttendeeId, a.Name, a.Age, a.Email, e.Name from Attendees a INNER JOIN Events e on a.EventId=e.EventId", connection);
                 // cmd.Parameters.AddWithValue("@aid",eid);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
@@ -322,7 +327,7 @@ namespace dotnetapp.Managers
                     foreach (DataRow row in set.Tables[0].Rows)
                     {
 
-                        Console.WriteLine($"Attende ID: {row[0]}\n Name: {row[1]}\n Age: {row[2]}\n Email:  {row[3]}\n Event Name:");
+                        Console.WriteLine($"Attende ID: {row[0]}\nName: {row[1]}\nAge: {row[2]}\nEmail:  {row[3]}\nEvent Name:{row[4]}");
                     }
                 }
                 else
