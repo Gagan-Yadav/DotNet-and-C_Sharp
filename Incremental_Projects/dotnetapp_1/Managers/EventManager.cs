@@ -6,6 +6,7 @@ using System.Data;
 // using Internal;
 // using Internal;
 // using Internal;
+// using Internal;
 namespace dotnetapp.Managers
 {
     class EventManager : IEventManager
@@ -124,8 +125,9 @@ namespace dotnetapp.Managers
                     foreach (DataRow row in set.Tables[0].Rows)
                     {
 
-                        Console.WriteLine($"Event ID: {row[0]}\nName: {row[1]}\nLocation: {row[2]}\nEvent Date:  {row[3]}\nBudget: {row[4]}");
-                        am.ListAttendeesFromDB();
+                        Console.WriteLine($"Event ID: {row[0]}\nName: {row[1]}\nLocation: {row[2]}\nEvent Date:  {row[3]}\nBudget: \u20B9{row[4]}");
+                        Console.WriteLine("Attendees:");
+                        am.ListAttendeesFromDBById((int)row[0]);
                     }
                 }
                 else
