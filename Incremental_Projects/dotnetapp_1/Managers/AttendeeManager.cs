@@ -327,7 +327,37 @@ namespace dotnetapp.Managers
                     foreach (DataRow row in set.Tables[0].Rows)
                     {
 
-                        Console.WriteLine($"Attende ID: {row[0]}\nName: {row[1]}\nAge: {row[2]}\nEmail:  {row[3]}\nEvent Name:{row[4]}");
+                        Console.WriteLine($"Attendee ID: {row[0]}\nName: {row[1]}\nAge: {row[2]}\nEmail:  {row[3]}\nEvent Name:{row[4]}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No Attendee Found.");
+                }
+            }
+        }
+
+        public void ListAttendeesFromDBById(int id)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+
+
+                SqlCommand cmd = new SqlCommand("Select a.AttendeeId, a.Name, a.Age, a.Email, e.Name from Attendees a INNER JOIN Events e on a.EventId=e.EventId where e.EventId = @id", connection);
+                cmd.Parameters.AddWithValue("@id",id);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                DataSet set = new DataSet();
+
+                adapter.Fill(set, "Attendees");
+                if (set.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow row in set.Tables[0].Rows)
+                    {
+
+                        Console.WriteLine($"Attendee ID: {row[0]} Name: {row[1]} Age: {row[2]} Email:  {row[3]} Event Name:{row[4]}");
                     }
                 }
                 else
