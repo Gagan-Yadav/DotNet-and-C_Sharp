@@ -27,7 +27,7 @@ namespace dotnetapp.Managers
                     Console.WriteLine("7. Delete Attendee from list");
                     Console.WriteLine("8. Add Event to DB");
                     Console.WriteLine("9. List Events from DB");
-                    Console.WriteLine("10. Add Attendee from DB");
+                    Console.WriteLine("10. Add Attendee to DB");
                     Console.WriteLine("11. List Attendees from DB");
                     Console.WriteLine("12. Edit Attendee in DB");
                     Console.WriteLine("13. Delete Attendee from DB");
