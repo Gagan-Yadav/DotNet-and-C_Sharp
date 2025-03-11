@@ -7,6 +7,10 @@ using System.Data;
 // using Internal;
 // using Internal;
 // using Internal;
+// using Internal;
+// using Internal;
+// using Internal;
+// using Internal;
 namespace dotnetapp.Managers
 {
     class EventManager : IEventManager
@@ -67,75 +71,103 @@ namespace dotnetapp.Managers
         }
         public void AddEventToDB()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
 
-                Console.Write("Enter Event Name: ");
-                string em = Console.ReadLine();
-                Console.Write("Enter Location: ");
-                string lc = Console.ReadLine();
+                    Console.Write("Enter Event Name: ");
+                    string em = Console.ReadLine();
+                    if (string.IsNullOrEmpty(em))
+                    {
+                        Console.WriteLine("Invalid Input");
+                        return;
+                    }
+                    Console.Write("Enter Location: ");
+                    string lc = Console.ReadLine();
+                    if (string.IsNullOrEmpty(lc))
+                    {
+                        Console.WriteLine("Invalid Input");
+                        return;
+                    }
 
-                Console.Write("Enter Event Date: ");
-                DateTime dt = DateTime.Parse(Console.ReadLine());
-                Console.Write("Enter Budget: ");
-                int bg = int.Parse(Console.ReadLine());
+                    Console.Write("Enter Event Date: ");
+                    // DateTime dt = DateTime.Parse(Console.ReadLine());
+                    if (!DateTime.TryParse(Console.ReadLine(), out DateTime dt))
+                    {
+                        Console.WriteLine("Invalid Input");
+                        return;
+                    }
+                    Console.Write("Enter Budget: ");
+                    // int bg = int.Parse(Console.ReadLine());
+                    if (!int.TryParse(Console.ReadLine(), out int bg))
+                    {
+                        Console.WriteLine("Invalid Input");
+                        return;
+                    }
 
 
-                SqlCommand cmd = new SqlCommand("Select * from Events", connection);
-                // cmd.Parameters.AddWithValue("@aid", );
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-                DataSet set = new DataSet();
-                //   DataSet set = new DataSet();
-                adapter.Fill(set, "Events");
-                // if (set.Tables[0].Rows.Count <= 0)
-                //{
-                DataRow row = set.Tables[0].NewRow();
-                row[1] = em;
-                row[2] = lc;
-                row[3] = dt;
-                row[4] = bg;
+                    SqlCommand cmd = new SqlCommand("Select * from Events", connection);
+                    // cmd.Parameters.AddWithValue("@aid", );
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    DataSet set = new DataSet();
+                    //   DataSet set = new DataSet();
+                    adapter.Fill(set, "Events");
 
-                set.Tables[0].Rows.Add(row);
-                adapter.Update(set, "Events");
-                Console.WriteLine("Event added to the database successfully!");
-                //}
-                //else
-                //{
-                /// Console.WriteLine("ID Already Exists");
-                // }
+                    DataRow row = set.Tables[0].NewRow();
+                    row[1] = em;
+                    row[2] = lc;
+                    row[3] = dt;
+                    row[4] = bg;
+
+                    set.Tables[0].Rows.Add(row);
+                    adapter.Update(set, "Events");
+                    Console.WriteLine("Event added to the database successfully!");
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Please Enter Valid Input! " + e.Message);
             }
         }
         public void ListEventsFromDB()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-
-
-
-                SqlCommand cmd = new SqlCommand("Select * from Events", connection);
-                // cmd.Parameters.AddWithValue("@aid",eid);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-                DataSet set = new DataSet();
-
-                adapter.Fill(set, "Events");
-                if (set.Tables[0].Rows.Count > 0)
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    foreach (DataRow row in set.Tables[0].Rows)
-                    {
 
-                        Console.WriteLine($"Event ID: {row[0]}\nName: {row[1]}\nLocation: {row[2]}\nEvent Date:  {row[3]}\nBudget: \u20B9{row[4]}");
-                        Console.WriteLine("Attendees:");
-                        am.ListAttendeesFromDBById((int)row[0]);
+
+
+                    SqlCommand cmd = new SqlCommand("Select * from Events", connection);
+                    // cmd.Parameters.AddWithValue("@aid",eid);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    DataSet set = new DataSet();
+
+                    adapter.Fill(set, "Events");
+                    if (set.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow row in set.Tables[0].Rows)
+                        {
+
+                            Console.WriteLine($"Event ID: {row[0]}\nName: {row[1]}\nLocation: {row[2]}\nEvent Date:  {row[3]}\nBudget: \u20B9{row[4]}");
+                            Console.WriteLine("Attendees:");
+                            am.ListAttendeesFromDBById((int)row[0]);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Event Found.");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("No Event Found.");
-                }
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 
