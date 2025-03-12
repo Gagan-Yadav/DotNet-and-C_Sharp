@@ -19,4 +19,39 @@ to access this in html we have to use @ symbol before this
 => <input type="text" value="@ViewBag.a" />
 =><h1> Value of a = @TempData["a"]  </h1>
 Ragor code = writing c sharp inside html ;
+---------------------------------------------------------------------------------				MVC
+annotations == attribute in ASP
+[Required(ErrorMessage="Please enter name:")]
+[Display(Name="Date of Birth")] // alias on browser for input
+[Compare("Password",ErrorMessage="did not match")] // next field confirm passw rod
+
+CONTROLLER => It handles user requests, has collection of Action methods;
+base class => System.Web.Mvc.Controller // derive controller from this
+
+it uses webfrom/viewEngine for rendering asp.NET page.
+
+[Range(1,1000,ErrorMessage="enter id between 1 and 100")]
+
+transfer data controller to view => using tempData, viewBag, viewData
+when using viewData we have to re typecast our list in view file means copy that list into another list in view file.
+{HTML Helper = ?} 
+@Html.ActionLink("Delete","DeleteCar",new {id= c.cid}) between/inside tags
+
+RedirectToAction("Function name"); redirecting to a particular function within that class
+
+****method name is case insensitive in this
+<form action="path to that fucntion" method="Post"></form>
+use parent route avoid unnecessary collison for child routes or use full path
+
+we can use Model to transfer data , one of the best way to transfer data (two way data transfer)(view to controller and controller to view)
+------------------------------------------------------------------------------
+Partial view is like inner view html inside html (any view we want to use in our main view like search call it anywhere withing your page .
+we can use inline razor code between tags like we have used html tag  helper
+layout names starts with _
+
+Model is a strongly typed (tight coupling) //write this in view to access our list which is present in Controller = @model List<Book> and then use *Model* everywhere in view to access this list
+
+parameter name in controller must be same while passing id from view using ActionLink in view
+input type ="hidden" // input will be hidden
+
 
