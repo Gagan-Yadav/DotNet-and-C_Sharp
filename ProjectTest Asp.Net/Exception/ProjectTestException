@@ -1,0 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Exception;
+namespace dotnetapp.Exception
+{
+    public class ProjectTestException : Exception
+    {
+    public ProjectTestException(string message) : base(message){}
+        
+    }
+}
