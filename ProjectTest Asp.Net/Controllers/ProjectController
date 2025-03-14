@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using dotnetapp.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
+namespace dotnetapp.Controllers
+{
+    // [Route("[controller]")]
+    public class ProjectController : Controller
+    {
+      AppDbContext1 db = null;
+      public ProjectController(AppDbContext1 db1){
+        db = db1;
+      }
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+         public async Task<IActionResult> AvailableProjects()
+        {
+            var res = db.Projects.ToList(); // or var res = await db.Projects.ToList();
+            if(res==null){
+                return NotFound();
+            }
+            return View(res);
+        }
+
+        [HttpGet]
+         public async Task<IActionResult> DeleteConfirmation(int id)
+        {
+            var res = db.Projects.Find(id); // or var res = await db.Projects.FindAsync(id);
+            if(res==null){
+                return NotFound(); // 404 server code
+            }
+            return View(res); // display confirm delete view
+        }
+
+         [HttpPost]
+         public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var res = db.Projects.Find(id); // or var res = await db.Projects.FindAsync(id);
+            if(res==null){
+                return NotFound(); // 404 server code
+            }
+
+            db.Projects.Remove(res);
+            db.SaveChanges(); // or await db.SaveChangesAsync();
+            return RedirectToAction("AvailableProjects"); // display confirm delete view
+        }
+
+
+
+      
+    }
+}
