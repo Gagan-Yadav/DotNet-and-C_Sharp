@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using dotnetapp.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc;
+
+
+namespace dotnetapp.Controllers
+{
+    [Route("[controller]")]
+    public class StudentController : Controller
+    {
+
+        AppDbContext db = null;
+        public StudentController(AppDbContext db1)
+        {
+            db = db1;
+        }
+
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+        
+        public IActionResult DisplayAllStudents(){
+                var students = db.Students.Include(s=>s.Course).ToList();
+                return View(students);
+        }
+         public IActionResult SearchStudentsByName(string query){
+                var students = db.Students.Include(s=>s.Course).Where(s=>s.Name.Contains(query)).ToList();
+
+                return View("SearchStudentsByName", students);
+        }
+        [HttpGet]
+         public IActionResult AddStudent(){
+                var cour = db.Courses.ToList();
+                ViewBag.Courses = cour.Select(c=>new SelectListItem{
+                    Value = c.CourseId.ToString(),
+                    Text = c.Title
+                }).ToList();
+                return View();
+        }
+
+        [HttpPost]
+         public IActionResult AddStudent(Student student){
+                    db.Students.Add(student);
+                    db.SaveChanges();
+                return RedirectToAction("DisplayAllStudents");
+        }
+
+        [HttpPost]
+         public IActionResult UpdateStudent(Student updatedStudent){
+                var student = db.Students.Find(updatedStudent.StudentId);
+                if(student == null){
+                    return NotFound();
+                }
+
+                student.Name = updatedStudent.Name;
+                student.Email = updatedStudent.Email;
+                student.YearOfJoining = updatedStudent.YearOfJoining;
+                student.CourseId = updatedStudent.CourseId;
+                db.SaveChanges();
+                return RedirectToAction("DisplayAllStudents");
+        }
+
+        public IActionResult Error()
+        {
+            return View("Error!");
+        }
+    }
+}
