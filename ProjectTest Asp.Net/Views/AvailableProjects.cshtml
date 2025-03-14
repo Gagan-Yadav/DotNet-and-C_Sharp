@@ -1,0 +1,32 @@
+@model IEnumerable<dotnetapp.Models.Project>
+     @* use list for static list  , enumerable when database communication *@
+
+    <h1>Project Test System</h1>
+
+    @if(!Model.Any()){
+        <p> No Available Projects.</p>
+    }else{
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Manager</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Manager</td>
+                        <td>
+                            @Html.ActionLink("Test","TestForm", new {ProjectID = item.ProjectID})
+                            <a id="deleteButton" href="@Url.Action("DeleteConfimation","Project", new{id=item.ProjectID})">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
