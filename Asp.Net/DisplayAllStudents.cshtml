@@ -1,0 +1,86 @@
+@* @model List<dotnetapp.Models.Student>
+
+<p>
+    <a asp-action="AddStudent" class="btn btn-primary">Add Student</a>
+</p>
+
+<form asp-controller="Student" asp-action="SearchStudentsByName" method="post">
+    <div class="form-group">
+        <label for="searchQuery">Search by Name:</label>
+        <div class="button-container">
+            <input type="text" id="searchQuery" name="query" class="form-control textfield" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+<h2>All Students</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Year of Joining</th>
+            <th>Course</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.Email</td>
+                <td>@student.YearOfJoining</td>
+                <td>@student.Course?.Title</td>
+            </tr>
+        }
+    </tbody>
+</table> *@
+
+
+
+@model List<dotnetapp.Models.Student>
+
+<p>
+    <a asp-action="AddStudent" class="btn btn-primary">Add Student</a>
+</p>
+
+<form asp-controller="Student" asp-action="SearchStudentsByName" method="post">
+    <div class="form-group">
+        <label for="searchQuery">Search by Name:</label>
+        <div class="button-container">
+            <input type="text" id="searchQuery" name="query" class="form-control textfield" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+<h2>All Students</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Year of Joining</th>
+            <th>Course</th>
+            <th>Actions</th> <!-- New column for actions -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.Email</td>
+                <td>@student.YearOfJoining</td>
+                <td>@student.Course?.Title</td>
+                <td>
+                    <!-- Update button linking to the UpdateStudent action -->
+                    <a asp-action="UpdateStudent" asp-controller="Student" asp-route-id="@student.StudentId" class="btn btn-secondary">Update</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
