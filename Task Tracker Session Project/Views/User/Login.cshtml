@@ -1,0 +1,30 @@
+@model dotnetapp.Models.User
+@if(TempData["err"]!=null){
+    @TempData["err"]
+}
+
+<h1>Login</h1>
+<form asp-action="Login">
+
+    @* <div>
+        <label>Task Id</label>
+        <input type="text" name="TaskId" />
+
+    </div> *@
+    <div>
+        <label>User Name</label>
+        <input type="text" name="UserName" />
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="text" name="Password" />
+    </div>
+
+    <div>
+        @* <input type="submit" value="Add Task" /> *@
+    <button type="submit" value="Login">Login</button>
+    </div>
+
+</form>
+<h1> New User <a asp-action="Register" asp-controller="User">Register</a>
+</h1>
