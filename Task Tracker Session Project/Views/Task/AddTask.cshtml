@@ -1,0 +1,24 @@
+@model dotnetapp.Models.TaskModel
+<h1>Add Task</h1>
+<form asp-action="AddTask">
+
+    @* <div>
+        <label>Task Id</label>
+        <input type="text" name="TaskId" />
+
+    </div> *@
+    <div>
+        <label>Task Name</label>
+        <input type="text" name="TaskName" />
+    </div>
+    <div>
+        <label>Task Status</label>
+        <input type="text" name="Status" />
+    </div>
+
+    <div>
+        @* <input type="submit" value="Add Task" /> *@
+    <button type="submit">Create</button>
+    </div>
+
+</form>
