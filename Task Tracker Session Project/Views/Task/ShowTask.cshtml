@@ -1,0 +1,28 @@
+@model IEnumerable<dotnetapp.Models.TaskModel>
+
+<h1>Welcome @ViewBag.un</h1>
+<h1>All Tasks</h1>
+<a asp-action="AddTask" asp-controller="">Add Task</a>
+<table>
+    <thead>
+        <tr>
+            <th>Task ID</th>
+             <th>Task Name</th>
+              <th>Task Status</th>
+               <th>Actions</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TaskId</td>
+                 <td>@item.TaskName</td>
+                  <td>@item.Status</td>
+                   <td><a asp-action="DeleteTask" asp-controller="">Delete</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
