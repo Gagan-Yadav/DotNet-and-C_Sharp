@@ -1,0 +1,25 @@
+@model dotnetapp.Models.User
+
+<h1>Register</h1>
+<form asp-action="Register">
+
+    @* <div>
+        <label>Task Id</label>
+        <input type="text" name="TaskId" />
+
+    </div> *@
+    <div>
+        <label>User Name</label>
+        <input type="text" name="UserName" />
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="text" name="Password" />
+    </div>
+
+    <div>
+        @* <input type="submit" value="Add Task" /> *@
+    <button type="submit">Register</button>
+    </div>
+
+</form>
